@@ -9,7 +9,7 @@ A small project for learning `requests` and `BeautifulSoup`. Pushes PKU offical 
 
 ### 1. Clone the project to your server:
 ```bash
-git clone https://github.com/yourusername/pku-coe-notice-helper.git
+git clone https://github.com/ha0xin/pku-coe-notice-helper.git
 cd pku-coe-notice-helper
 ```
 
