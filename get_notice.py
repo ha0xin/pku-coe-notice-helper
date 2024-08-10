@@ -1,8 +1,10 @@
 '''获取并聚合信息，制作消息'''
+import os
 from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
+
 
 class Notice:
     '''通知基类'''
@@ -230,13 +232,17 @@ def aggregate_notices():
     notices.extend(get_dean_notices())
     notices.extend(get_coe_notices())
     # notices.extend(get_coe_undergraduates_notices())
-
-    with open("blacklist.txt", "r", encoding='utf-8') as f:
+    
+    # 获取当前脚本的目录
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    blacklist_path = os.path.join(script_dir, "blacklist.txt")
+    
+    with open(blacklist_path, "r", encoding='utf-8') as f:
         blacklist = f.readlines()
         blacklist = [line.strip() for line in blacklist]
-
+    
     notices = [notice for notice in notices if all(keyword not in notice.title for keyword in blacklist)]
-
+    
     return notices
 
 def save_notices(notices):
